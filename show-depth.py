@@ -9,6 +9,8 @@ import btceapi
 # as a currency pair for which depth should be displayed. Otherwise
 # the BTC/USD depth will be displayed.
 
+print "Boobs are awesome"
+
 if len(sys.argv) >= 2:
     pair = sys.argv[1]
     print "Showing depth for %s" % pair
@@ -28,3 +30,4 @@ pylab.plot(bid_prices, np.cumsum(bid_volumes), 'g-')
 pylab.grid()
 pylab.title("%s depth" % pair)
 pylab.show()
+
