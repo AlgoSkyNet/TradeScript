@@ -18,9 +18,7 @@ def getHistory(operation="b"):
 		if t['trade_type']=="ask":
 			prices_asks[t['date']]=t['price']
 
-	from collections import Counter
-
-	print 'asks:'
+	"""print 'asks:'
 	print len(prices_asks)
 	print prices_asks
 		
@@ -28,10 +26,10 @@ def getHistory(operation="b"):
 		
 	print 'bids:'
 	print len(prices_bids)
-	print prices_bids
+	print prices_bids"""
 	
 	returnDict=prices_bids if operation=="b" else prices_asks
 	
 	return returnDict
 
-getHistory()
+print getHistory()
