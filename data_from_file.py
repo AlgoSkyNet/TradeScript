@@ -1,14 +1,12 @@
-import btceapi
-import datetime 
+import json
+import datetime
 
-period_mins=4
-pair = "ltc_eur"
+def getHistory(period_mins=0.01):
+	trades=json.load(file("trades"))
+	trades.sort(key=lambda x: x['date'], reverse=False)
 
-def getHistory():
-	trades=btceapi.getTradeHistory(pair=pair, count=5000)
-	trades.sort(key=lambda x: x.date, reverse=False)
-
-	period_end_date=trades[0].date+datetime.timedelta(minutes = period_mins)
+	#The first period
+	period_end_date=trades[0]['date']+period_mins*60
 	period_num=0
 
 	prices_bids=[]
@@ -20,15 +18,15 @@ def getHistory():
 	mode_prices_asks=[]
 
 	for t in trades:
-		if t.date<period_end_date:
-			if t.trade_type=="bid":
-				prices_bids[period_num].append(t.price)
+		if t['date']<period_end_date:
+			if t['trade_type']=="bid":
+				prices_bids[period_num].append(t['price'])
 			
-			if t.trade_type=="ask":
-				prices_asks[period_num].append(t.price)
+			if t['trade_type']=="ask":
+				prices_asks[period_num].append(t['price'])
 		else:		
 			period_num=period_num+1
-			period_end_date=period_end_date+datetime.timedelta(minutes = period_mins)
+			period_end_date=period_end_date+period_mins*60
 			prices_asks.append([])
 			prices_bids.append([])
 
@@ -60,4 +58,8 @@ def getHistory():
 		mode_prices_bids.append(mode)
 		
 		print mode
+	returnDict=dict()
+	
 	return [mode_prices_asks, mode_prices_bids]
+
+getHistory()
