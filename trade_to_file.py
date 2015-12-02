@@ -4,7 +4,7 @@ file_name="trades_log.txt"
 
 
 class Order:
-	def __init__(self, operation="buy", amount=1, price=100.1):
+	def __init__(self, operation="none", amount=1, price=-1):
 		self.operation=operation
 		self.amount=amount
 		self.price=price
@@ -30,13 +30,11 @@ def trade(order):
 	log.close()
 	
 
-order1=Order()
-order2=Order()
-order3=Order(operation="sell", price=200)
-order4=Order(operation="none")
 
-trade(order1)
-trade(order2)
+order3=Order(operation="sell", price=200)
+order4=Order(operation="none", price=100)
+
+
 trade(order3)
 trade(order4)
 

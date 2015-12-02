@@ -1,9 +1,9 @@
 import btceapi
 import datetime 
 
-pair = "btc_eur"
+pair = "ltc_eur"
 
-def getHistory(minutes=25, operation="b"):
+def getHistory(minutes=5, operation="b"):
 	if operation!="b" and operation!="a":
 		raise ValueError("Operation should be either 'a' for asks, or 'b' for bids")
 		
@@ -18,7 +18,7 @@ def getHistory(minutes=25, operation="b"):
 
 	for t in trades:
 		if t.date<since_time:
-			print t.date
+			#print t.date
 			extra_items+=1
 			continue
 			
@@ -44,4 +44,4 @@ def getHistory(minutes=25, operation="b"):
 	
 	return returnDict
 	
-print getHistory()
+#print getHistory(minutes=20)
