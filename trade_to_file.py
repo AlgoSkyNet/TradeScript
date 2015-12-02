@@ -35,7 +35,7 @@ order3=Order(operation="sell", price=200)
 order4=Order(operation="none", price=100)
 
 
-trade(order3)
-trade(order4)
+#trade(order3)
+#trade(order4)
 
 			
